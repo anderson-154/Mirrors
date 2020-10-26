@@ -2,19 +2,26 @@ package model;
 
 public class Cell {
 
-	private String mirror;
+	private int n;
+	private char m;
 	private Cell nextCell;
 	private Cell prevCell;
 	private Cell upCell;
 	private Cell downCell;
-	
-	public Cell(String mirror) {
+
+	public Cell(int n, char m) {
 		super();
-		this.mirror = mirror;
+		this.n = n;
+		this.m = m;
 	}
 
-	public String getMirror() {
-		return mirror;
+
+	public int getN() {
+		return n;
+	}
+
+	public char getM() {
+		return m;
 	}
 
 	public Cell getNextCell() {
