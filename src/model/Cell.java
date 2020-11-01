@@ -3,16 +3,19 @@ package model;
 public class Cell {
 
 	private int n;
-	private char m;
+	private int m;
+	private boolean mirror;
+	
 	private Cell nextCell;
 	private Cell prevCell;
 	private Cell upCell;
 	private Cell downCell;
 
-	public Cell(int n, char m) {
+	public Cell(int n, int m, boolean mirror) {
 		super();
 		this.n = n;
 		this.m = m;
+		this.mirror = mirror;
 	}
 
 
@@ -20,9 +23,15 @@ public class Cell {
 		return n;
 	}
 
-	public char getM() {
+	public int getM() {
 		return m;
 	}
+	
+
+	public boolean isMirror() {
+		return mirror;
+	}
+
 
 	public Cell getNextCell() {
 		return nextCell;
@@ -57,5 +66,10 @@ public class Cell {
 		this.upCell = upCell;
 	}
 	
-	
+	public char getNum() {
+		return (char)('A'+m);
+	}
+	public String toString() {
+	return "["+n+","+m+"]";
+	}
 }

@@ -4,16 +4,15 @@ public class Game {
 
 	private int k;
 	private int n;
-	private char m;
+	private int m;
 	private String nickName;
 	private Cell firstCell;
 	
-	public Game(int k, int n, char m, String nickName) {
+	public Game(int n, int m) {
 		super();
-		this.k = k;
 		this.n = n;
 		this.m = m;
-		this.nickName = nickName;
+		createMatrix();
 	}
 
 	public int getK() {
@@ -24,7 +23,7 @@ public class Game {
 		return n;
 	}
 
-	public char getM() {
+	public int getM() {
 		return m;
 	}
 
@@ -36,22 +35,58 @@ public class Game {
 		return firstCell;
 	}
 	
-	public Cell createMatrix(int n, char m) {
-		return createMatrix(n, m, firstCell);
+	public void createMatrix() {
+		firstCell = new Cell(0,0, false);
+		createRow(0,0, false, firstCell);
 	}
 	
-	private Cell createMatrix(int i, char j, Cell current) {
-		if(i>=n && j>=m) {
-			return null;
+	private void createRow(int i, int j, boolean b, Cell firstRow) {
+		createCol(i,j+1,b, firstRow, firstRow.getUpCell());
+		if(i+1<n) {
+			Cell downFirstRow = new Cell(i+1, j, b);
+			downFirstRow.setUpCell(firstRow);
+			firstRow.setDownCell(downFirstRow);
+			createRow(i+1, j, b, downFirstRow);
 		}
-		Cell aux = new Cell(i,j);
-		aux.setPrevCell(current);
-		aux.setUpCell(current);
-		aux.setNextCell(createMatrix(i, (char)(j+1), current));
-		aux.setPrevCell(createMatrix(i+1, j, current));
-		
-		return current;
-		
+	}
+
+	private void createCol(int i, int j, boolean b, Cell prev, Cell rowPrev) {
+		if(j<m) {
+			Cell current = new Cell(i,j,b);
+			current.setPrevCell(prev);
+			prev.setNextCell(current);
+			
+			if(rowPrev!=null){
+				rowPrev = rowPrev.getNextCell();
+				current.setUpCell(rowPrev);
+				rowPrev.setDownCell(current);
+			}
+			createCol(i, j+1, b, current, rowPrev);
+		}
 	}
 	
+	public String toString() {
+		String msg;
+		msg = toStringRow(firstCell);
+		
+		return msg;
+	}
+
+	private String toStringRow(Cell firstCellRow) {
+		String msg="";
+		if(firstCellRow!=null) {
+			msg = toStringCol(firstCellRow)+"\n"; 
+			msg += toStringRow(firstCellRow.getDownCell());
+		}
+		return msg;
+	}
+	
+	private String toStringCol(Cell current) {
+		String msg="";
+		if(current!=null) {
+			msg = current.toString(); 
+			msg += toStringCol(current.getNextCell());
+		}
+		return msg;
+	}
 }

@@ -35,9 +35,9 @@ public class Menu {
 		m = "===============\n";
 		m += "    Menu\n";
 		m += "===============\n";
-		m += "1. Add restaurant \n";
-		m += "2. Add product \n";
-		m += "3. Add client \n";
+		m += "1. Create game\n";
+		m += "2. \n";
+		m += "3. Exit";
 		return m;
 	}
 
@@ -52,7 +52,7 @@ public class Menu {
 
 		switch (option) {
 		case 1:
-
+			game();
 			break;
 
 		case 2:
@@ -65,6 +65,17 @@ public class Menu {
 		}
 	}
 
+	private void game() throws IOException {
+		System.out.println("enter the nick name");
+		String nickName = br.readLine();
+		System.out.println("enter n size matrix");
+		int n = Integer.parseInt(br.readLine());
+		System.out.println("enter m size matrix");
+		char m = (char) Integer.parseInt(br.readLine());
+		System.out.println("enter k mirrors");
+		int k = Integer.parseInt(br.readLine());
+		
+	}
 	private void exitProgram() throws IOException {
 		br.close();
 		bw.close();
