@@ -4,18 +4,18 @@ public class Cell {
 
 	private int n;
 	private int m;
-	private boolean mirror;
+	private char mirror;
+	private String id;
 	
 	private Cell nextCell;
 	private Cell prevCell;
 	private Cell upCell;
 	private Cell downCell;
 
-	public Cell(int n, int m, boolean mirror) {
+	public Cell(int n, int m) {
 		super();
 		this.n = n;
 		this.m = m;
-		this.mirror = mirror;
 	}
 
 
@@ -28,10 +28,19 @@ public class Cell {
 	}
 	
 
-	public boolean isMirror() {
+	public char getMirror() {
 		return mirror;
 	}
 
+
+	public void setMirror(char mirror) {
+		this.mirror = mirror;
+	}
+
+
+	public String getId() {
+		return id=""+n+getNum();
+	}
 
 	public Cell getNextCell() {
 		return nextCell;
@@ -70,6 +79,10 @@ public class Cell {
 		return (char)('A'+m);
 	}
 	public String toString() {
-	return "["+n+","+m+"]";
+	return "[ ]";
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 }

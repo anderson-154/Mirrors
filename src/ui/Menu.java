@@ -11,7 +11,7 @@ import model.*;
 public class Menu {
 
 	public static final int EXIT_OPTION = 4;
-	public Game game;
+	public Game game ;
 
 	public BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -36,7 +36,7 @@ public class Menu {
 		m += "    Menu\n";
 		m += "===============\n";
 		m += "1. Create game\n";
-		m += "2. \n";
+		m += "2. show points\n";
 		m += "3. Exit";
 		return m;
 	}
@@ -44,7 +44,6 @@ public class Menu {
 	private int readOption() throws IOException {
 		int option;
 		option = Integer.parseInt(br.readLine());
-		br.readLine();
 		return option;
 	}
 
@@ -71,9 +70,12 @@ public class Menu {
 		System.out.println("enter n size matrix");
 		int n = Integer.parseInt(br.readLine());
 		System.out.println("enter m size matrix");
-		char m = (char) Integer.parseInt(br.readLine());
+		int m = Integer.parseInt(br.readLine());
 		System.out.println("enter k mirrors");
 		int k = Integer.parseInt(br.readLine());
+		game = new Game(n,m);
+		System.out.println(nickName);
+		System.out.println(game);
 		
 	}
 	private void exitProgram() throws IOException {
