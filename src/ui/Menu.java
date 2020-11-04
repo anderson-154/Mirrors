@@ -73,10 +73,10 @@ public class Menu {
 		int m = Integer.parseInt(br.readLine());
 		System.out.println("enter k mirrors");
 		int k = Integer.parseInt(br.readLine());
-		game = new Game(n,m);
+		game = new Game(n, m, k);
 		System.out.println(nickName);
 		System.out.println(game);
-		
+		game.addMirror();
 	}
 	private void exitProgram() throws IOException {
 		br.close();

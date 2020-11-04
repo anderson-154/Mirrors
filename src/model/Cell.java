@@ -79,7 +79,7 @@ public class Cell {
 		return (char)('A'+m);
 	}
 	public String toString() {
-	return "[ ]";
+	return "["+getMirror()+" ]";
 	}
 	
 	public void setId(String id) {

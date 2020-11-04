@@ -10,7 +10,7 @@ public class Game {
 	private String nickName;
 	private Cell firstCell;
 
-	public Game(int n, int m) {
+	public Game(int n, int m, int k) {
 		super();
 		this.n = n;
 		this.m = m;
@@ -142,10 +142,16 @@ public class Game {
 		int tempMirror = 0;
 		if (tempMirror < k) {
 			Cell searched = search(generatedId());
-			if(getRandom()) {
-				searched.setMirror((char)47);
+			if(searched.getMirror()==(char)47 || searched.getMirror()==(char)95 ) {
+				addMirror();
 			}else {
-				searched.setMirror((char)92);
+				if(getRandom()) {
+					searched.setMirror((char)47);
+				}else {
+					searched.setMirror((char)92);
+				}
+				tempMirror++;
+				addMirror();
 			}
 		}
 	}
@@ -158,7 +164,7 @@ public class Game {
 		return isRandom;
 	}
 
-	public void shut(int pos) {
+	public void shut(String id) {
 
 	}
 }
