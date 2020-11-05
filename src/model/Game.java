@@ -4,11 +4,13 @@ import java.util.Random;
 
 public class Game {
 
+	private Score root;
 	private int k;
 	private int n;
 	private int m;
 	private String nickName;
 	private Cell firstCell;
+	private int tempMirror;
 
 	public Game(int n, int m, int k) {
 		this.n = n;
@@ -35,11 +37,27 @@ public class Game {
 		return firstCell;
 	}
 
+	public Score getRoot() {
+		return root;
+	}
+
+	public void setRoot(Score root) {
+		this.root = root;
+	}
+
 	public void createMatrix() {
 		firstCell = new Cell(0, 0);
 		createRow(0, 0, firstCell);
 	}
 
+	public int getTempMirror() {
+		return tempMirror;
+	}
+
+	public void setTempMirror(int tempMirror) {
+		this.tempMirror = tempMirror;
+	}
+	
 	private void createRow(int i, int j, Cell firstRow) {
 		createCol(i, j + 1, firstRow, firstRow.getUpCell());
 		if (i + 1 < n) {
@@ -137,14 +155,13 @@ public class Game {
 	}
 
 	public void addMirror() {
-		int tempMirror = 0;
-		if (tempMirror<k) {
+		if (k<tempMirror) {
 			Cell searched = search(generatedId());
-			if (searched.getMirror() == (char) 47 || searched.getMirror() == (char) 95) {
+			if (searched.getMirror() == 'R' || searched.getMirror() == 'L') {
 				addMirror();
 			} else {
 				searched.setMirror(selectMirror());
-				tempMirror++;
+				setTempMirror(++tempMirror);
 				addMirror();
 			}
 		}
@@ -193,8 +210,8 @@ public class Game {
 			}
 		}
 	}
+	
 	private void shotH() {
-		
 		
 	}
 
@@ -204,5 +221,30 @@ public class Game {
 
 	public void shot(String pos) {
 		search(pos);
+	}
+	
+	public void addScore(Score newScore) {
+		addScore(newScore, root);
+	}
+
+	private void addScore(Score newScore, Score root) {
+		if(root==null) {
+			setRoot(newScore);
+		}else {
+			if(newScore.getScore()<=root.getScore()) {
+				if(root.getLeft()==null) {
+					root.setLeft(newScore);
+				}else {
+					addScore(newScore, root.getLeft());
+				}
+			}else {
+				if(root.getRight()==null) {
+					root.setRight(newScore);
+				}else {
+					addScore(newScore, root.getRight());
+				}
+			}
+		}
+		
 	}
 }
