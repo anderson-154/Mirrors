@@ -55,7 +55,7 @@ public class Menu {
 			break;
 
 		case 2:
-
+			
 			break;
 
 		case 3:
@@ -65,14 +65,13 @@ public class Menu {
 	}
 
 	private void game() throws IOException {
-		System.out.println("enter the nick name");
-		String nickName = br.readLine();
-		System.out.println("enter n size matrix");
-		int n = Integer.parseInt(br.readLine());
-		System.out.println("enter m size matrix");
-		int m = Integer.parseInt(br.readLine());
-		System.out.println("enter k mirrors");
-		int k = Integer.parseInt(br.readLine());
+		System.out.println("enter the nick name, n, m , k separated with a space");
+		String line = br.readLine();
+		String[]parts=line.split(" ");
+		String nickName = parts[0];
+		int n = Integer.parseInt(parts[1]);
+		int m = Integer.parseInt(parts[2]);
+		int k = Integer.parseInt(parts[3]);
 		game = new Game(n, m, k);
 		System.out.println(nickName);
 		game.createMatrix();

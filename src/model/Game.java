@@ -44,18 +44,18 @@ public class Game {
 	public void setRoot(Score root) {
 		this.root = root;
 	}
-
-	public void createMatrix() {
-		firstCell = new Cell(0, 0);
-		createRow(0, 0, firstCell);
-	}
-
+	
 	public int getTempMirror() {
 		return tempMirror;
 	}
 
 	public void setTempMirror(int tempMirror) {
 		this.tempMirror = tempMirror;
+	}
+
+	public void createMatrix() {
+		firstCell = new Cell(0, 0);
+		createRow(0, 0, firstCell);
 	}
 	
 	private void createRow(int i, int j, Cell firstRow) {
