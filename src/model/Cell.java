@@ -13,9 +13,13 @@ public class Cell {
 	private Cell downCell;
 
 	public Cell(int n, int m) {
-		super();
 		this.n = n;
 		this.m = m;
+		nextCell = null;
+		prevCell = null;
+		upCell = null;
+		downCell = null;
+		mirror=getMirror();
 	}
 
 
@@ -26,12 +30,10 @@ public class Cell {
 	public int getM() {
 		return m;
 	}
-	
 
 	public char getMirror() {
 		return mirror;
 	}
-
 
 	public void setMirror(char mirror) {
 		this.mirror = mirror;
@@ -39,7 +41,8 @@ public class Cell {
 
 
 	public String getId() {
-		return id=""+n+getNum();
+		id=""+n+getNum();
+		return id;
 	}
 
 	public Cell getNextCell() {
@@ -78,8 +81,9 @@ public class Cell {
 	public char getNum() {
 		return (char)('A'+m);
 	}
+	@Override
 	public String toString() {
-	return "["+getMirror()+" ]";
+	return "["+getMirror()+"]";
 	}
 	
 	public void setId(String id) {

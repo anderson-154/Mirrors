@@ -33,7 +33,7 @@ public class Menu {
 	private String getMenu() {
 		String m;
 		m = "===============\n";
-		m += "    Menu\n";
+		m += "     Menu\n";
 		m += "===============\n";
 		m += "1. Create game\n";
 		m += "2. show points\n";
@@ -75,9 +75,17 @@ public class Menu {
 		int k = Integer.parseInt(br.readLine());
 		game = new Game(n, m, k);
 		System.out.println(nickName);
+		game.createMatrix();
 		System.out.println(game);
 		game.addMirror();
+		System.out.println(game);
+		System.out.println("now the idea of ​​the game is that you try to guess where the mirrors of the matrix are");
+		System.out.println("to perform the shot you must indicate the position from where you want to shoot rows starting from the letter A and columns with numbers starting from 1");
+		System.out.println("If you want to shoot through any of the corners of the matrix, you must indicate whether it will be vertical (v) or horizontal (h)");
+		
+		String shot = br.readLine();
 	}
+	
 	private void exitProgram() throws IOException {
 		br.close();
 		bw.close();

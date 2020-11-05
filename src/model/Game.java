@@ -11,10 +11,8 @@ public class Game {
 	private Cell firstCell;
 
 	public Game(int n, int m, int k) {
-		super();
 		this.n = n;
 		this.m = m;
-		createMatrix();
 	}
 
 	public int getK() {
@@ -66,7 +64,7 @@ public class Game {
 			createCol(i, j + 1, current, rowPrev);
 		}
 	}
-
+	@Override
 	public String toString() {
 		String msg;
 		msg = toStringRow(firstCell);
@@ -77,8 +75,8 @@ public class Game {
 	private String toStringRow(Cell firstCellRow) {
 		String msg = "";
 		if (firstCellRow != null) {
-			msg = toStringCol(firstCellRow) + "\n";
-			msg += toStringRow(firstCellRow.getDownCell());
+			msg += toStringCol(firstCellRow) + "\n";
+			return msg += toStringRow(firstCellRow.getDownCell());
 		}
 		return msg;
 	}
@@ -87,7 +85,7 @@ public class Game {
 		String msg = "";
 		if (current != null) {
 			msg = current.toString();
-			msg += toStringCol(current.getNextCell());
+			return msg += toStringCol(current.getNextCell());
 		}
 		return msg;
 	}
@@ -127,36 +125,39 @@ public class Game {
 	}
 
 	public String generatedId() {
-		String id;
+		String id = "";
 
-		int randomRow = (int) (Math.random() * (n - 1 + 1) + 1);
+		int randomRow = (int) (Math.random() * (n - 1 + 1) + 0);
 
 		int randomCol = (int) (Math.random() * (m - 1 + 1) + 0);
 
 		char m = (char) ('A' + randomCol);
-
-		return id = "" + randomRow + m;
+		id = "" + randomRow + m;
+		return id;
 	}
 
 	public void addMirror() {
 		int tempMirror = 0;
-		if (tempMirror < k) {
+		if (tempMirror<k) {
 			Cell searched = search(generatedId());
-			if(searched.getMirror()==(char)47 || searched.getMirror()==(char)95 ) {
+			if (searched.getMirror() == (char) 47 || searched.getMirror() == (char) 95) {
 				addMirror();
-			}else {
-				if(getRandom()) {
-					searched.setMirror((char)47);
-				}else {
-					searched.setMirror((char)92);
-				}
+			} else {
+				searched.setMirror(selectMirror());
 				tempMirror++;
 				addMirror();
 			}
 		}
 	}
 
-	public boolean getRandom() {
+	private char selectMirror() {
+        if (getRandom()) {
+            return 'R';
+        }
+        return 'L';
+    }
+	
+	private boolean getRandom() {
 		boolean isRandom = false;
 		Random random = new Random();
 		isRandom = random.nextBoolean();
@@ -164,7 +165,44 @@ public class Game {
 		return isRandom;
 	}
 
-	public void shut(String id) {
+	public void posShot(String pos, String vh) {
+		Cell current = search(pos);
+		if(current.getUpCell()==null && current.getPrevCell()==null) {
+			if(vh=="V") {
+				shotV();
+			}else if(vh=="H") {
+				shotH();
+			}
+		}else if(current.getUpCell()==null && current.getNextCell()==null) {
+			if(vh=="V") {
+				shotV();
+			}else if(vh=="H") {
+				shotH();
+			}
+		}else if(current.getDownCell()==null && current.getPrevCell()==null) {
+			if(vh=="V") {
+				shotV();
+			}else if(vh=="H") {
+				shotH();
+			}
+		}else if(current.getDownCell()==null && current.getNextCell()==null) {
+			if(vh=="V") {
+				shotV();
+			}else if(vh=="H") {
+				shotH();
+			}
+		}
+	}
+	private void shotH() {
+		
+		
+	}
 
+	private void shotV() {
+		
+	}
+
+	public void shot(String pos) {
+		search(pos);
 	}
 }
