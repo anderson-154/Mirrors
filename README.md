@@ -1,0 +1,6 @@
+###Welcome to  \\\-looking for mirrors-/
+
+- Welcome to our game !!! You wonder what it consists of? well ... you will have to create a game with your name a number of rows, columns and a number of mirrors that will be placed in a random matrix. Once you have created the game, this consists in that you can make a shot which will mark you in the matrix with an "S" and the output of the shot will be an "E". Note that there are mirrors inside the array and these can be "/" mirrors to the right or "\" mirrors to the left. Your beam can bounce off one of those beams causing it to change trajectory. This is where you will have to engineer them to be able to guess where the mirrors are by writing an "L" followed by the position of the matrix and where the mirror points "R" or "L". Remember that the more mistakes you have when it comes to guessing a mirror your score will go down ... So make no mistake! GOO !!!
+
+If you want to know more about what is behind this game, we invite you to find our code at: [https://github.com/anderson-154/Mirrors](https://github.com/anderson-154/Mirrors)
+###End
